@@ -15,7 +15,7 @@ const Header = () => (
       </div>
       <p className="navbar-text navbar-right">
         created by:
-        <a href="#" className="navbar-link"> Elliot Himmelfarb</a>
+        <a target="_blank" href="" className="navbar-link"> Elliot Himmelfarb</a>
       </p>
     </div>
   </nav>

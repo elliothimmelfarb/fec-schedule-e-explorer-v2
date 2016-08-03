@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import courses from './courseReducer';
+import nameSearch from './nameSearchReducer';
 
 const rootReducer = combineReducers({
-  courses,
+  nameSearch,
 });
 
 export default rootReducer;

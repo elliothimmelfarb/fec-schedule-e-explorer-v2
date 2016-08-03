@@ -8,6 +8,7 @@ import routes from './routes';
 import './styles/style.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+
 const store = configureStore();
 
 render(
