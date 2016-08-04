@@ -45,10 +45,11 @@ class NameListDisplay extends React.Component {
 
   render() {
     let list;
-    if (this.props.candidateSearching && this.props.isCandidateMode)
-      list = this.makeCandidateCards(this.props.candidatesByName);
-    else list = (<span>Search Above</span>);
+    if (this.props.candidateSearching && this.props.isCandidateMode) list = this.makeCandidateCards(this.props.candidatesByName);
+    else list = <span>Search Above</span>;
+
     console.log('list', list);
+
     return (
       <div>
         {list}

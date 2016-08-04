@@ -29,7 +29,7 @@ CandidateNameDisplayCard.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    candidateDetails: state.nameSearch.candidateSearch,
+    candidateDetails: [],
   };
 }
 

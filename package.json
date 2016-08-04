@@ -10,10 +10,8 @@
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
-
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
-
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-dist test build:html",
     "build": "babel-node tools/build.js"
@@ -33,7 +31,7 @@
     "react-redux": "4.4.5",
     "react-router": "2.4.0",
     "react-router-redux": "4.0.4",
-    "redux": "3.5.2",
+    "redux": "^3.5.2",
     "redux-immutable-state-invariant": "1.2.3",
     "redux-thunk": "2.0.1",
     "style-loader": "0.13.1",
