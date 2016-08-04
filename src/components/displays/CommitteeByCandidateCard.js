@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getCommitteesByCandidate } from '../../actions/candidateActions';
+import { getSectionEsCrossRef } from '../../actions/sharedActions';
 
-class CandidateNameDisplayCard extends React.Component {
+class CommitteeByCandidateCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,14 +19,14 @@ class CandidateNameDisplayCard extends React.Component {
   createCommitteesByCandidateList() {
     const { id, candidatesById } = this.props;
     return candidatesById[id].map(committee => {
-
+      return
     })
   }
 
   render() {
     const { id, name, office, candidatesById } = this.props
     return (
-      <div className="jumbotron" onClick={() => this.toggleDetails()}>
+      <div className="jumbotron" onClick={() => toggleDetails()}>
         <div className="container row">
           <div className="col-xs-6">
             <p>{name}</p>
@@ -43,14 +43,13 @@ class CandidateNameDisplayCard extends React.Component {
   }
 }
 
-CandidateNameDisplayCard.propTypes = {
+CommitteeByCandidateCard.propTypes = {
   name: PropTypes.string,
   office: PropTypes.string,
   candidatesById: PropTypes.object,
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log('state.candidates:', state);
   return {
     candidatesById: state.candidates.candidatesById,
   };
@@ -58,8 +57,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getDetails: (id) => dispatch(getCommitteesByCandidate(id)),
+    // getDetails: (id) => dispatch(getCommitteesByCandidate(id)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CandidateNameDisplayCard);
+export default connect(mapStateToProps, mapDispatchToProps)(CommitteeByCandidateCard);

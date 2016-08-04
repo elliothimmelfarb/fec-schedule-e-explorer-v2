@@ -8,13 +8,6 @@ class NameListDisplay extends React.Component {
     super(props);
   }
 
-
-  // candidateOrCommittee(names) {
-  //   if (this.props.isCandidateMode) return this.makeCandidateCards(names);
-  //   return this.makeCommitteeCards(names);
-  // }
-
-
   makeCandidateCards(names) {
     console.log('names:', names);
     const offices = {
@@ -25,7 +18,7 @@ class NameListDisplay extends React.Component {
     return names.map((name, index) => (
       <CandidateNameDisplayCard
         key={this.props.candidatesByName[index].id}
-        showDetails={false}
+        id={this.props.candidatesByName[index].id}
         name={this.props.candidatesByName[index].name}
         office={offices[this.props.candidatesByName[index].office_sought]}
       />
@@ -44,11 +37,15 @@ class NameListDisplay extends React.Component {
 
 
   render() {
-    let list;
-    if (this.props.candidateSearching && this.props.isCandidateMode) list = this.makeCandidateCards(this.props.candidatesByName);
-    else list = <span>Search Above</span>;
+    const {
+      candidateSearchActive,
+      isCandidateMode,
+      candidatesByName } = this.props;
 
-    console.log('list', list);
+    let list;
+
+    if (candidateSearchActive && isCandidateMode) list = this.makeCandidateCards(candidatesByName);
+    else list = <span>Search Above</span>;
 
     return (
       <div>
@@ -60,15 +57,14 @@ class NameListDisplay extends React.Component {
 
 NameListDisplay.propTypes = {
   candidatesByName: PropTypes.array,
-  candidateSearching: PropTypes.bool.isRequired,
+  candidateSearchActive: PropTypes.bool.isRequired,
   isCandidateMode: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log('state:', state);
   return {
     candidatesByName: state.candidates.candidatesByName,
-    candidateSearching: state.candidates.candidateSearchActive,
+    candidateSearchActive: state.candidates.candidateSearchActive,
     isCandidateMode: state.global.isCandidateMode,
   };
 }
