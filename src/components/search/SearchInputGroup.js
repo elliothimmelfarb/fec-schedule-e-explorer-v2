@@ -34,7 +34,7 @@ class SearchInputGroup extends React.Component {
         <form
           onSubmit={e => {
             e.preventDefault();
-            search(isCandidateMode, this.inputValue);
+            search(isCandidateMode, this.state.inputValue);
             this.inputValue = '';
           }}
           className="form-horizontal"
@@ -48,7 +48,7 @@ class SearchInputGroup extends React.Component {
             </label>
             <div className="col-sm-9">
               <input
-                value={this.inputValue}
+                value={this.state.inputValue}
                 type="text"
                 className="form-control"
                 placeholder={isCandidateMode ? 'candidate' : 'committee'}

@@ -9,13 +9,14 @@ class NameListDisplay extends React.Component {
   }
 
 
-  candidateOrCommittee(names) {
-    if (this.props.isCandidateMode) return this.makeCandidateCards(names);
-    return this.makeCommitteeCards(names);
-  }
+  // candidateOrCommittee(names) {
+  //   if (this.props.isCandidateMode) return this.makeCandidateCards(names);
+  //   return this.makeCommitteeCards(names);
+  // }
 
 
   makeCandidateCards(names) {
+    console.log('names:', names);
     const offices = {
       P: 'President',
       S: 'Senate',
@@ -23,51 +24,50 @@ class NameListDisplay extends React.Component {
     };
     return names.map((name, index) => (
       <CandidateNameDisplayCard
-        key={index}
+        key={this.props.candidatesByName[index].id}
         showDetails={false}
-        name={this.props.names.data[index].name}
-        office={offices[this.props.names.data[index].office_sought]}
+        name={this.props.candidatesByName[index].name}
+        office={offices[this.props.candidatesByName[index].office_sought]}
       />
     ));
   }
 
 
-  makeCommitteeCards(names) {
-    return names.map((name, index) =>
-      <CommitteeNameDisplayCard
-        key={index}
-        name={this.props.names.data[index].name}
-      />
-    );
-  }
+  // makeCommitteeCards(names) {
+  //   return names.map((name, index) =>
+  //     <CommitteeNameDisplayCard
+  //       key={index}
+  //       name={this.props.names.dat[index].name}
+  //     />
+  //   );
+  // }
 
 
   render() {
-    console.log('nameDisplay.props:', this.props);
     let list;
-    // if (this.props.candidateSearching) list = this.candidateOrCommittee();
+    if (this.props.candidateSearching && this.props.isCandidateMode)
+      list = this.makeCandidateCards(this.props.candidatesByName);
+    else list = (<span>Search Above</span>);
+    console.log('list', list);
     return (
       <div>
-        {
-          this.props.candidateSearching ?
-          <h1>List</h1> :
-            <span>Search Above</span>
-        }
+        {list}
       </div>
     );
   }
 }
 
 NameListDisplay.propTypes = {
-  candidateNames: PropTypes.array,
+  candidatesByName: PropTypes.array,
   candidateSearching: PropTypes.bool.isRequired,
   isCandidateMode: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
+  console.log('state:', state);
   return {
-    candidateNames: state.candidates.candidatesByName,
-    candidateSearching: state.candidates.isSearching,
+    candidatesByName: state.candidates.candidatesByName,
+    candidateSearching: state.candidates.candidateSearchActive,
     isCandidateMode: state.global.isCandidateMode,
   };
 }

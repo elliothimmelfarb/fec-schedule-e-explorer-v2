@@ -24,11 +24,10 @@ function CandidateNameDisplayCard({
 CandidateNameDisplayCard.propTypes = {
   name: PropTypes.string,
   office: PropTypes.string,
-  showDetails: PropTypes.bool.isRequired,
+  showDetails: PropTypes.bool,
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log('ownProps:', ownProps);
   return {
     candidateDetails: state.nameSearch.candidateSearch,
   };
