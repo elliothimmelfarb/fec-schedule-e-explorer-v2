@@ -28,21 +28,21 @@ export default {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
   ],
-  resolve: {
-    extensions: ["", ".js", ".jsx"],
-  },
+  // resolve: {
+  //   extensions: ["", ".js", ".jsx"],
+  // },
   module: {
     loaders: [
-      // { test: /\.jsx?$/, include: path.join(__dirname, 'src'), loaders: ['babel'] },
-      {
-        test: /\.jsx?$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        include: path.join(__dirname, 'src'),
-        query: {
-          presets: ['react', 'es2015'],
-        },
-      },
+      { test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel'] },
+      // {
+      //   test: /\.jsx?$/,
+      //   loader: 'babel',
+      //   exclude: /node_modules/,
+      //   include: path.join(__dirname, 'src'),
+      //   query: {
+      //     presets: ['react', 'es2015'],
+      //   },
+      // },
       { test: /(\.css)$/, loader: ExtractTextPlugin.extract("css?sourceMap") },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
       { test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000' },
