@@ -8,13 +8,12 @@ const style = {
 class App extends React.Component {
   render() {
     return (
-        <div className="container-fluid">
-          <Header />
-          <div style={style}>
-
-          </div>
+      <div className="container-fluid">
+        <Header />
+        <div style={style}>
           {this.props.children}
         </div>
+      </div>
     );
   }
 }

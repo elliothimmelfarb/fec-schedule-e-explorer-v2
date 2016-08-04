@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import InputGroup from './InputGroup';
-import {
-  switchMode,
-  nameSearchCandidate,
-  nameSearchCommittee,
-} from '../../actions/nameSearchActions';
+import SearchInputGroup from './SearchInputGroup';
+import { switchMode } from '../../actions/globalStateActions';
+import { nameSearchCandidate } from '../../actions/candidateActions';
+import { nameSearchCommittee } from '../../actions/committeeActions';
 
 const style = {
   outer: {
@@ -25,37 +23,31 @@ class SearchArea extends React.Component {
   render() {
     return (
       <div style={style.outer} className="jumbotron">
-        <h3 style={style.h3}>Search for Section E Filings by Candidate or Committee</h3>
-        <InputGroup
-          switchMode={this.props.switchMode}
-          search={this.props.search}
-          target={this.props.candidateSearch ? 'candidate' : 'committee'}
-          candidateSearch={this.props.candidateSearch}
-        />
+        <h3 style={style.h3}>
+          Search for Section E Filings by {
+            this.props.isCandidateSearch ? 'Candidate' : 'Committee'
+          }
+        </h3>
+        <SearchInputGroup />
       </div>
     );
   }
 }
 
 SearchArea.propTypes = {
-  candidateSearch: PropTypes.bool.isRequired,
+  isCandidateMode: PropTypes.bool.isRequired,
   switchMode: PropTypes.func.isRequired,
-  search: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    candidateSearch: state.nameSearch.candidateSearch,
+    isCandidateMode: state.global.isCandidateMode,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     switchMode: () => dispatch(switchMode()),
-    search: (candidateSearch, name) => {
-      if (candidateSearch) return dispatch(nameSearchCandidate(name));
-      return dispatch(nameSearchCommittee(name));
-    },
   };
 }
 

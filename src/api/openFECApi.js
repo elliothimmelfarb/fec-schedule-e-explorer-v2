@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// const baseURI = 'http://localhost:8000';
 const baseURI = 'https://section-e-explorer-backend.herokuapp.com/api/open_fec';
 const nameSearchCandidate = (name) => `${baseURI}/search/candidate_name/${name}`;
 const nameSearchCommittee = (name) => `${baseURI}/search/committee_name/${name}`;

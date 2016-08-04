@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import nameSearch from './nameSearchReducer';
+import candidates from './candidatesReducer';
+import global from './globalStateReducer';
 
 const rootReducer = combineReducers({
-  nameSearch,
+  global,
+  candidates,
 });
 
 export default rootReducer;

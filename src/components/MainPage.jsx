@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SearchArea from './search/searchArea';
+import NameListDisplay from './displays/NameListDisplay';
 
 const style = {
   maxWidth: 1000,
   margin: '0 auto',
-}
+};
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -16,16 +17,17 @@ class MainPage extends React.Component {
     return (
       <div style={style}>
         <SearchArea />
+        <NameListDisplay />
       </div>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    data: state.data,
-  };
-}
+// function mapStateToProps(state, ownProps) {
+//   return {
+//     nameSearched: state.nameSearch.hasSearched,
+//   };
+// }
 
 // function mapDispatchToProps(dispatch) {
 //   return {
@@ -33,4 +35,4 @@ function mapStateToProps(state, ownProps) {
 //   }
 // }
 
-export default connect(mapStateToProps)(MainPage);
+export default connect()(MainPage);
