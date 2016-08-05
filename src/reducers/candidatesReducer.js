@@ -25,13 +25,15 @@ export default (state = initialState, action) => {
 
     case types.SCHEDULE_ES_BY_COMMITTEE_SUCCESSS: {
       let candidatesById = Object.assign({}, state.candidatesById);
-      console.log('candidatesByThisId',candidatesById[action.id]);
-      candidatesById[action.id].SchedEByCommitteeList = action.list;
+      if (!candidatesById[action.candidateId].hasOwnProperty('schedEByCommitteeList')) {
+        candidatesById[action.candidateId].schedEByCommitteeList = {};
+      }
+      candidatesById[action.candidateId].schedEByCommitteeList[action.committeeId] = action.list;
       return Object.assign({}, state, { candidatesById });
     }
 
     case types.SCHEDULE_ES_BY_COMMITTEE_FAILURE: {
-      console.log(error);
+      console.log(action.error);
       return state;
     }
 

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getScheduleEFilingsByCommittee } from '../../actions/candidateActions';
+import ScheduleEDisplayCard from './ScheduleEDisplayCard';
 
 const style = {
   jumbotron: {
@@ -24,16 +25,32 @@ class CommitteeByCandidateCard extends React.Component {
     this.setState({ showDetails: !this.state.showDetails });
   }
 
-  // createCommitteesByCandidateList() {
-  //   const { id, candidatesById } = this.props;
-  //   return candidatesById[id].map(committee => {
-  //     return
-  //   })
-  // }
+  createList() {
+    const { candidateId, candidatesById, committeeId } = this.props;
+    return candidatesById[candidateId].schedEByCommitteeList[committeeId].map((schedE, index) => {
+      const data = {
+        pdf_url: schedE.pdf_url,
+        expenditure_date: schedE.expenditure_date,
+        expenditure_amount: schedE.expenditure_amount,
+        expenditure_description: schedE.expenditure_description,
+      }
+      return (
+        <ScheduleEDisplayCard
+          key={index}
+          data={data}
+        />
+      );
+    });
+  }
 
   render() {
-    const { committeeName, count, total, supportOppose } = this.props
-
+    const { committeeId, candidateId, candidatesById, committeeName, count, total, supportOppose } = this.props
+    let list = '';
+    if (this.state.showDetails
+      && candidatesById[candidateId].hasOwnProperty('schedEByCommitteeList')
+      && candidatesById[candidateId].schedEByCommitteeList.hasOwnProperty(committeeId)) {
+        list = this.createList();
+      }
     return (
       <div style={style.jumbotron} className="jumbotron">
         <div className="container row">
@@ -55,6 +72,9 @@ class CommitteeByCandidateCard extends React.Component {
         <button onClick={() => this.toggleDetails()} className="btn btn-info form-control">
           {this.state.showDetails ? 'Close' : 'Expand'}
         </button>
+        <div>
+          {list}
+        </div>
       </div>
     );
   }
@@ -62,6 +82,7 @@ class CommitteeByCandidateCard extends React.Component {
 
 CommitteeByCandidateCard.propTypes = {
   committeeId: PropTypes.string,
+  candidateId: PropTypes.string,
   committeeName: PropTypes.string,
   count: PropTypes.number,
   total: PropTypes.number,
