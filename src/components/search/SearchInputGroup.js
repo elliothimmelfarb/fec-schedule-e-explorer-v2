@@ -9,7 +9,7 @@ const style = {
     margin: '0 auto',
   },
   button: {
-    marginBottom: 15,
+    marginTop: 15,
   },
   label: {
     fontSize: 16,
@@ -56,6 +56,7 @@ class SearchInputGroup extends React.Component {
                 />
             </div>
           </div>
+          <button className="btn btn-success">Search</button>
           <div>
             <button
               style={style.button}
@@ -66,7 +67,6 @@ class SearchInputGroup extends React.Component {
               {isCandidateMode ? 'Switch to Committee Search' : 'Switch to Candidate Search'}
             </button>
           </div>
-          <button className="btn btn-success">Search</button>
         </form>
       </div>
     );

@@ -24,7 +24,7 @@ class SearchArea extends React.Component {
     return (
       <div style={style.outer} className="jumbotron">
         <h3 style={style.h3}>
-          Search for Section E Filings by {
+          Search for Schedule E Filings by {
             this.props.isCandidateSearch ? 'Candidate' : 'Committee'
           }
         </h3>

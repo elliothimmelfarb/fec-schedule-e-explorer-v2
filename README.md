@@ -1,1 +1,1 @@
-## FEC Section E Filings Explorer
+## FEC Schedule E Filings Explorer

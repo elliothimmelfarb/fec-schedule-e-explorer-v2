@@ -10,7 +10,7 @@ const Header = () => (
     <div className="container-fluid">
       <div className="navbar-header">
         <a className="navbar-brand" href="#">
-          <p>FEC Section E Filings Explorer</p>
+          <p>FEC schedule E Filings Explorer</p>
         </a>
       </div>
       <p className="navbar-text navbar-right">
@@ -18,7 +18,7 @@ const Header = () => (
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/elliothimmelfarb/fec-section-e-explorer-v2"
+          href="https://github.com/elliothimmelfarb/fec-schedule-e-explorer-v2"
           className="navbar-link"
         >
           Elliot Himmelfarb

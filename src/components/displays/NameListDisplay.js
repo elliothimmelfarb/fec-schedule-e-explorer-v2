@@ -9,7 +9,6 @@ class NameListDisplay extends React.Component {
   }
 
   makeCandidateCards(names) {
-    console.log('names:', names);
     const offices = {
       P: 'President',
       S: 'Senate',

@@ -8,17 +8,35 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.NAME_SEARCH_CANDIDATE_SUCCESS:
+    case types.NAME_SEARCH_CANDIDATE_SUCCESS: {
       return Object.assign({}, state, { candidatesByName: action.list, candidateSearchActive: true});
-    case types.COMMITTEES_BY_CANDIDATE_SUCCESS:
-      console.log('action:', action);
-      const candidatesById = Object.assign({}, state.candidatesById);
-      candidatesById[action.id] = {committeesList: action.list};
+    }
+
+    case types.COMMITTEES_BY_CANDIDATE_SUCCESS: {
+      let candidatesById = Object.assign({}, state.candidatesById);
+      candidatesById[action.id] = {committeeList: action.list};
       return Object.assign({}, state, { candidatesById });
-    case types.COMMITTEES_BY_CANDIDATE_FAILURE:
-      console.log('fail');
+    }
+
+    case types.COMMITTEES_BY_CANDIDATE_FAILURE: {
+      console.log(action.error);
       return state;
-    default:
+    }
+
+    case types.SCHEDULE_ES_BY_COMMITTEE_SUCCESSS: {
+      let candidatesById = Object.assign({}, state.candidatesById);
+      console.log('candidatesByThisId',candidatesById[action.id]);
+      candidatesById[action.id].SchedEByCommitteeList = action.list;
+      return Object.assign({}, state, { candidatesById });
+    }
+
+    case types.SCHEDULE_ES_BY_COMMITTEE_FAILURE: {
+      console.log(error);
       return state;
+    }
+
+    default: {
+      return state;
+    }
   }
 }

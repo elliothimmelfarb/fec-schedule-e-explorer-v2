@@ -1,7 +1,7 @@
 {
-  "name": "fec-section-e-explorer",
+  "name": "fec-schedule-e-explorer",
   "version": "1.0.0",
-  "description": "Search and view FEC Section E filings related to committees and candidates",
+  "description": "Search and view FEC Schedule E filings related to committees and candidates",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
@@ -74,6 +74,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/elliothimmelfarb/fec-section-e-explorer-v2"
+    "url": "https://github.com/elliothimmelfarb/fec-schedule-e-explorer-v2"
   }
 }
