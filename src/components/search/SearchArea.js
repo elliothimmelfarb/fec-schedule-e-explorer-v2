@@ -13,7 +13,7 @@ const style = {
   jumbotron: {
     border: '1px solid rgb(107, 107, 107)',
     textAlign: 'center',
-    boxShadow: '-6px 10px 16px -9px #3c3c3c;',
+    boxShadow: '-6px 10px 16px -9px #3c3c3c',
   }
 };
 

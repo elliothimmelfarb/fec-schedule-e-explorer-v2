@@ -7,7 +7,7 @@ const style = {
   },
   nav: {
     border: '1px solid rgb(156, 156, 156)',
-    boxShadow: '-6px 10px 16px -9px #3c3c3c;',
+    boxShadow: '-6px 10px 16px -9px #3c3c3c',
   },
   brand: {
     fontSize: '2em',

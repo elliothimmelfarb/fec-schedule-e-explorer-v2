@@ -50,6 +50,7 @@ export function getCommitteesByCandidate(id) {
 }
 
 export function getScheduleEFilingsByCommittee(committeeId, candidateId) {
+  console.log(committeeId, candidateId);
   return dispatch =>
     openFECApi.scheduleERelationshipHistory(committeeId, candidateId)
       .then(response => {

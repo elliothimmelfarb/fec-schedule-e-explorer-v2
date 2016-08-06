@@ -61,7 +61,6 @@ class CandidateByCommitteeCard extends React.Component {
       "S": "Supporting",
     }
     return committeesById[committeeId].schedEByCandidateList[candidateId].map((schedE, index) => {
-      console.log('schedE',schedE);
       const data = {
         pdf_url: schedE.pdf_url,
         expenditure_date: schedE.expenditure_date,
@@ -88,7 +87,6 @@ class CandidateByCommitteeCard extends React.Component {
       && committeesById[committeeId].hasOwnProperty('schedEByCandidateList')
       && committeesById[committeeId].schedEByCandidateList.hasOwnProperty(candidateId)) {
         list = this.createList();
-        console.log(committeeName, candidateName);
       }
     return (
       <div style={style.jumbotron} className="jumbotron">

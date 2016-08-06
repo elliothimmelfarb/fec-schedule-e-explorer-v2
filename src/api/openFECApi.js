@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// const baseURI = 'http://localhost:8000';
 const baseURI = 'https://section-e-explorer-backend.herokuapp.com/api/open_fec';
 const nameSearchCandidate = (name) => `${baseURI}/search/candidate_name/${name}`;
 const nameSearchCommittee = (name) => `${baseURI}/search/committee_name/${name}`;
@@ -25,6 +24,8 @@ export default {
     return axios.get(getCandidatesByCommittee(id));
   },
   scheduleERelationshipHistory(committeeId, candidateId) {
+    console.log('committee:', committeeId);
+    console.log('candidate:', candidateId);
     return axios.get(scheduleERelationship(committeeId, candidateId));
   },
 };
