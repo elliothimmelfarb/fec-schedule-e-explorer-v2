@@ -42,3 +42,12 @@ button.btn {
   opacity: 0.01;
   transition: opacity 600ms ease-out;
 }
+
+.btn.btn-success {
+  background-color: rgb(124, 175, 121);
+  border-color: rgb(124, 175, 121);
+}
+
+.btn.btn-warning {
+  background-color:
+}

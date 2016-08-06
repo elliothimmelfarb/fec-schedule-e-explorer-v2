@@ -70,6 +70,7 @@ export default (props) => {
           <p>{support_oppose_indicator} {candidate_name}</p>
         </div>
       </div>
+      <hr/>
       <div style={style.row} className="container row">
         <div className="col-xs-12">
           <span>

@@ -20,6 +20,8 @@ const style = {
     fontSize: '30px',
     height: '60px',
     textAlign: 'center',
+    boxShadow: '-6px 10px 16px -9px #3c3c3c',
+    marginBottom: '20px',
   },
   hr: {
     borderColor: 'rgb(179, 178, 178)',
@@ -46,6 +48,7 @@ class SearchInputGroup extends React.Component {
 
     return (
       <div style={style.outer}>
+        <hr style={style.hr}/>
         <form
           onSubmit={e => {
             e.preventDefault();
