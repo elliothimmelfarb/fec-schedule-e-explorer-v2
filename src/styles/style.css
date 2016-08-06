@@ -1,3 +1,5 @@
+
+
 #app {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #4d4d4d;
@@ -12,4 +14,31 @@ a.active {
 
 nav {
   padding-top: 20px;
+}
+
+.jumbotron {
+  box-shadow: -6px 10px 16px -9px #3c3c3c;
+}
+
+button.btn {
+  box-shadow: -6px 10px 16px -9px #3c3c3c;
+}
+
+
+.cards-enter {
+  opacity: 0.01;
+}
+
+.cards-enter.cards-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+}
+
+.cards-leave {
+  opacity: 1;
+}
+
+.cards-leave.cards-leave-active {
+  opacity: 0.01;
+  transition: opacity 600ms ease-out;
 }

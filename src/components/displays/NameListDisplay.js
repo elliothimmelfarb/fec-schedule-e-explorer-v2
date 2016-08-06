@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import CandidateNameDisplayCard from './CandidateNameDisplayCard';
 import CommitteeNameDisplayCard from './CommitteeNameDisplayCard';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class NameListDisplay extends React.Component {
   constructor(props) {
@@ -52,7 +53,9 @@ class NameListDisplay extends React.Component {
 
     return (
       <div>
-        {list}
+        <ReactCSSTransitionGroup transitionName="cards" transitionEnterTimeout={400} transitionLeaveTimeout={200}>
+          {list}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

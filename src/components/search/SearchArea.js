@@ -6,12 +6,15 @@ import { nameSearchCandidate } from '../../actions/candidateActions';
 import { nameSearchCommittee } from '../../actions/committeeActions';
 
 const style = {
-  outer: {
-    textAlign: 'center',
-  },
   h3: {
     marginBottom: 50,
+    fontSize: '40px',
   },
+  jumbotron: {
+    border: '1px solid rgb(107, 107, 107)',
+    textAlign: 'center',
+    boxShadow: '-6px 10px 16px -9px #3c3c3c;',
+  }
 };
 
 
@@ -22,10 +25,10 @@ class SearchArea extends React.Component {
 
   render() {
     return (
-      <div style={style.outer} className="jumbotron">
+      <div style={style.jumbotron} className="jumbotron">
         <h3 style={style.h3}>
           Search for Schedule E Filings by {
-            this.props.isCandidateSearch ? 'Candidate' : 'Committee'
+            this.props.isCandidateMode ? 'Candidate' : 'Committee'
           }
         </h3>
         <SearchInputGroup />

@@ -3,16 +3,20 @@ import { connect } from 'react-redux';
 import { format } from 'currency-formatter'
 import { getScheduleEFilingsByCommittee } from '../../actions/candidateActions';
 import ScheduleEDisplayCard from './ScheduleEDisplayCard';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const style = {
   jumbotron: {
     padding: '40px 20px',
     paddingBottom: '10px',
     backgroundColor: 'rgb(179, 180, 193)',
+    marginBottom: '10px',
+    border: '1px solid rgb(171, 171, 171)',
+    marginRight: '20px',
+    marginLeft: '20px',
   },
   button: {
-    marginTop: '30px',
-    marginBottom: '15px',
+    marginBottom: '10px',
     backgroundColor: 'rgb(98, 140, 203)',
   },
   text: {
@@ -98,11 +102,14 @@ class CommitteeByCandidateCard extends React.Component {
             <p>{formattedTotal}</p>
           </div>
         </div>
+        <hr/>
         <button style={style.button} onClick={() => this.toggleDetails()} className="btn btn-info form-control">
           {!this.state.showDetails ? 'Show Individual Filings' : 'Hide Individual Filings'}
         </button>
         <div>
-          {list}
+          <ReactCSSTransitionGroup transitionName="cards" transitionEnterTimeout={400} transitionLeaveTimeout={200}>
+            {list}
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );

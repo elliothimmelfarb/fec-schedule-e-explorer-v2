@@ -7,6 +7,10 @@ const style = {
     padding: '40px 20px',
     paddingBottom: '10px',
     backgroundColor: 'rgb(231, 235, 255)',
+    marginBottom: '10px',
+    border: '1px solid rgb(107, 107, 107)',
+    marginRight: '20px',
+    marginLeft: '20px',
   },
   button: {
     marginTop: '30px',
@@ -32,6 +36,7 @@ const style = {
   },
   bottomLink: {
     marginTop: '20px',
+    fontSize: '20px',
   },
 }
 

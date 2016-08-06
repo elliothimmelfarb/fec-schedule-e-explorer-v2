@@ -3,16 +3,20 @@ import { connect } from 'react-redux';
 import { format } from 'currency-formatter'
 import { getScheduleEFilingsByCandidate } from '../../actions/committeeActions';
 import ScheduleEDisplayCard from './ScheduleEDisplayCard';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const style = {
   jumbotron: {
     padding: '40px 20px',
     paddingBottom: '10px',
-    backgroundColor: 'rgb(179, 180, 193)',
+    backgroundColor: 'rgb(195, 197, 217)',
+    marginBottom: '10px',
+    border: '1px solid rgb(171, 171, 171)',
+    marginRight: '20px',
+    marginLeft: '20px',
   },
   button: {
-    marginTop: '10px',
-    marginBottom: '15px',
+    marginBottom: '10px',
     backgroundColor: 'rgb(98, 140, 203)',
   },
   text: {
@@ -57,6 +61,7 @@ class CandidateByCommitteeCard extends React.Component {
       "S": "Supporting",
     }
     return committeesById[committeeId].schedEByCandidateList[candidateId].map((schedE, index) => {
+      console.log('schedE',schedE);
       const data = {
         pdf_url: schedE.pdf_url,
         expenditure_date: schedE.expenditure_date,
@@ -81,8 +86,9 @@ class CandidateByCommitteeCard extends React.Component {
     const formattedTotal = format(total, { code: 'USD' });
     if (this.state.showDetails
       && committeesById[committeeId].hasOwnProperty('schedEByCandidateList')
-      && committeesById[committeeId].schedEByCandidateList.hasOwnProperty(committeeId)) {
+      && committeesById[committeeId].schedEByCandidateList.hasOwnProperty(candidateId)) {
         list = this.createList();
+        console.log(committeeName, candidateName);
       }
     return (
       <div style={style.jumbotron} className="jumbotron">
@@ -107,11 +113,14 @@ class CandidateByCommitteeCard extends React.Component {
             {committeeName}
           </div>
         </div>
+        <hr/>
         <button style={style.button} onClick={() => this.toggleDetails()} className="btn btn-info form-control">
           {!this.state.showDetails ? 'Show Individual Filings' : 'Hide Individual Filings'}
         </button>
         <div>
-          {list}
+          <ReactCSSTransitionGroup transitionName="cards" transitionEnterTimeout={400} transitionLeaveTimeout={200}>
+            {list}
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );

@@ -2,15 +2,17 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import CandidateByCommitteeCard from './CandidateByCommitteeCard';
 import { getCandidatesByCommittee } from '../../actions/committeeActions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 const style = {
   jumbotron: {
     padding: '40px 20px',
     paddingBottom: '10px',
+    marginBottom: '10px',
+    border: '1px solid rgb(171, 171, 171)',
   },
   button: {
-    marginTop: '30px',
     marginBottom: '15px',
     backgroundColor: 'rgb(124, 175, 121)',
   },
@@ -70,7 +72,7 @@ class CommitteeNameDisplayCard extends React.Component {
     let list;
     if (this.state.showDetails && committeesById.hasOwnProperty(id)) {
       list = this.createList();
-      if (list.length < 1) list = (<p>Information Missing</p>)
+      if (list.length < 1) list = (<p>No Schedule E Filings</p>)
     }
     return (
       <div style={style.jumbotron} className="jumbotron">
@@ -79,11 +81,14 @@ class CommitteeNameDisplayCard extends React.Component {
             <p style={style.text}>{committeeName}</p>
           </div>
         </div>
+        <hr/>
         <button style={style.button} onClick={() => this.toggleDetails()} className="btn btn-info form-control">
           {this.state.showDetails ? 'Hide Candidates with filings by this Committee' : 'Show Candidates with filings by this Committee'}
         </button>
         <div>
-          {list}
+          <ReactCSSTransitionGroup transitionName="cards" transitionEnterTimeout={400} transitionLeaveTimeout={200}>
+            {list}
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );

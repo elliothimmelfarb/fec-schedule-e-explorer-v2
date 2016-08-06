@@ -2,20 +2,23 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import CommitteeByCandidateCard from './CommitteeByCandidateCard';
 import { getCommitteesByCandidate } from '../../actions/candidateActions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 const style = {
   jumbotron: {
     padding: '40px 20px',
     paddingBottom: '10px',
+    marginBottom: '10px',
+    border: '1px solid rgb(171, 171, 171)',
   },
   button: {
-    marginTop: '30px',
     marginBottom: '15px',
     backgroundColor: 'rgb(124, 175, 121)',
   },
   text: {
     fontSize: '30px',
+    fontWeight: '400',
   },
   col: {
     textAlign: 'center',
@@ -77,11 +80,14 @@ class CandidateNameDisplayCard extends React.Component {
             <p style={style.text}>Office Sought: {office}</p>
           </div>
         </div>
+        <hr/>
         <button style={style.button} onClick={() => this.toggleDetails()} className="btn btn-info form-control">
           {this.state.showDetails ? 'Hide Committees with Filings Related to this Candidate Seeking this Office' : 'Show Committees with Filings Related to this Candidate Seeking this Office'}
         </button>
         <div>
-          {list}
+          <ReactCSSTransitionGroup transitionName="cards" transitionEnterTimeout={400} transitionLeaveTimeout={200}>
+            {list}
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );

@@ -10,13 +10,21 @@ const style = {
     margin: '0 auto',
   },
   button: {
-    marginTop: 15,
+    marginBottom: -30,
   },
   label: {
-    fontSize: 16,
+    fontSize: 20,
     position: 'relative',
-    left: 20,
   },
+  input: {
+    fontSize: '30px',
+    height: '60px',
+    textAlign: 'center',
+  },
+  hr: {
+    borderColor: 'rgb(179, 178, 178)',
+    width: '60%',
+  }
 };
 
 class SearchInputGroup extends React.Component {
@@ -45,15 +53,18 @@ class SearchInputGroup extends React.Component {
           }}
           className="form-horizontal"
           >
-          <div className="form-group">
+          <div className="row">
             <label
               style={style.label}
-              className="col-sm-3"
+              className="col-sm-12"
               htmlFor="searchInput">
               Search by {isCandidateMode ? 'candidate' : 'committee'}
             </label>
-            <div className="col-sm-9">
+          </div>
+          <div className="form-group">
+            <div className="col-sm-12">
               <input
+                style={style.input}
                 value={input}
                 type="text"
                 className="form-control"
@@ -62,7 +73,8 @@ class SearchInputGroup extends React.Component {
                 />
             </div>
           </div>
-          <button className="btn btn-success">Search</button>
+          <button className="btn btn-success">Search for {isCandidateMode ? 'candidates' : 'committees'}</button>
+          <hr style={style.hr}/>
           <div>
             <button
               style={style.button}
