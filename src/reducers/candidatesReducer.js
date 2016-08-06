@@ -1,4 +1,5 @@
 import * as types from '../actions/actionTypes';
+import deepcopy from 'deepcopy';
 
 const initialState = {
   candidatesByName: [],
@@ -29,7 +30,8 @@ export default (state = initialState, action) => {
     }
 
     case types.SCHEDULE_ES_BY_COMMITTEE_SUCCESSS: {
-      const candidatesById = Object.assign({}, state.candidatesById);
+      // const candidatesById = Object.assign({}, state.candidatesById);
+      const candidatesById = deepcopy(state.candidatesById);
       if (!candidatesById[action.candidateId].hasOwnProperty('schedEByCommitteeList')) {
         candidatesById[action.candidateId].schedEByCommitteeList = {};
       }

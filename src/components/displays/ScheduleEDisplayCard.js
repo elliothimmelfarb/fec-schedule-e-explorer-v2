@@ -61,7 +61,7 @@ export default (props) => {
       <div style={style.row} className="container row">
         <div className="col-xs-4">
           Filing Date:
-          <p>{expenditure_date}</p>
+          <p>{expenditure_date || 'N/A'}</p>
         </div>
         <div className="col-xs-4">
           <p>{format(expenditure_amount, { code: 'USD' })}</p>

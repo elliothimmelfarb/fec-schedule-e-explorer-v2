@@ -21,7 +21,7 @@ function scheduleEsByCommitteeSuccess(list, committeeId, candidateId) {
   return { type: types.SCHEDULE_ES_BY_CANDIDATE_SUCCESSS, list, committeeId, candidateId };
 }
 
-function getScheduleEsByCommitteeFailure(error) {
+function scheduleEsByCommitteeFailure(error) {
   return { type: types.SCHEDULE_ES_BY_CANDIDATE_FAILURE, error };
 }
 
@@ -53,8 +53,8 @@ export function getScheduleEFilingsByCandidate(committeeId, candidateId) {
   return dispatch =>
     openFECApi.scheduleERelationshipHistory(committeeId, candidateId)
       .then(response => {
-        dispatch(scheduleEsByCommitteeSuccess(response.data, committeeId, candidateId));
+        dispatch(scheduleEsByCandidateSuccess(response.data, committeeId, candidateId));
       }).catch(error => {
-        dispatch(getScheduleEsByCommitteeFailure(error));
+        dispatch(scheduleEsByCommitteeFailure(error));
       });
 }

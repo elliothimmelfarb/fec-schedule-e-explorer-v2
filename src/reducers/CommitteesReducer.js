@@ -30,7 +30,6 @@ export default (state = initialState, action) => {
     }
 
     case types.SCHEDULE_ES_BY_CANDIDATE_SUCCESSS: {
-      console.log('here');
       const committeesById = Object.assign({}, state.committeesById);
       if (!committeesById[action.committeeId].hasOwnProperty('schedEByCandidateList')) {
         committeesById[action.committeeId].schedEByCandidateList = {};

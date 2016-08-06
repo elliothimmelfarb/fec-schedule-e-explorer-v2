@@ -87,6 +87,7 @@ class CandidateByCommitteeCard extends React.Component {
       && committeesById[committeeId].hasOwnProperty('schedEByCandidateList')
       && committeesById[committeeId].schedEByCandidateList.hasOwnProperty(candidateId)) {
         list = this.createList();
+        if (list.length === 0) list = (<p>No Schedule E Filings Found</p>)
       }
     return (
       <div style={style.jumbotron} className="jumbotron">
