@@ -25,25 +25,29 @@ class NameListDisplay extends React.Component {
   }
 
 
-  // makeCommitteeCards(names) {
-  //   return names.map((name, index) =>
-  //     <CommitteeNameDisplayCard
-  //       key={index}
-  //       name={this.props.names.dat[index].name}
-  //     />
-  //   );
-  // }
+  makeCommitteeCards(names) {
+    return names.map((name, index) =>
+      <CommitteeNameDisplayCard
+        key={index}
+        committeeName={this.props.committeesByName[index].name}
+        id={this.props.committeesByName[index].id}
+      />
+    );
+  }
 
 
   render() {
     const {
       candidateSearchActive,
+      committeeSearchActive,
       isCandidateMode,
+      committeesByName,
       candidatesByName } = this.props;
 
     let list;
 
     if (candidateSearchActive && isCandidateMode) list = this.makeCandidateCards(candidatesByName);
+    else if (committeeSearchActive && !isCandidateMode) list = this.makeCommitteeCards(committeesByName);
     else list = <span>Search Above</span>;
 
     return (
@@ -56,14 +60,18 @@ class NameListDisplay extends React.Component {
 
 NameListDisplay.propTypes = {
   candidatesByName: PropTypes.array,
+  committessByName: PropTypes.array,
   candidateSearchActive: PropTypes.bool.isRequired,
+  committeeSearchActive: PropTypes.bool.isRequired,
   isCandidateMode: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
     candidatesByName: state.candidates.candidatesByName,
+    committeesByName: state.committees.committeesByName,
     candidateSearchActive: state.candidates.candidateSearchActive,
+    committeeSearchActive: state.committees.committeeSearchActive,
     isCandidateMode: state.global.isCandidateMode,
   };
 }

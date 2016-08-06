@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { switchMode } from '../../actions/globalStateActions';
-import { nameSearchCandidate } from '../../actions/candidateActions';
+import { nameSearchCandidate, updateCandidateInput } from '../../actions/candidateActions';
+import { nameSearchCommittee, updateCommitteeInput } from '../../actions/committeeActions';
 
 const style = {
   outer: {
@@ -21,21 +22,26 @@ const style = {
 class SearchInputGroup extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      inputValue: '',
-    }
   }
 
   render() {
-    const { isCandidateMode, switchMode, search } = this.props;
+    const {
+      isCandidateMode,
+      switchMode,
+      search,
+      candidateSearchInput,
+      committeeSearchInput,
+      updateInput,
+    } = this.props;
+
+    const input = isCandidateMode ? candidateSearchInput : committeeSearchInput;
+
     return (
       <div style={style.outer}>
         <form
           onSubmit={e => {
             e.preventDefault();
-            search(isCandidateMode, this.state.inputValue);
-            this.inputValue = '';
+            search(isCandidateMode, isCandidateMode ? candidateSearchInput : committeeSearchInput);
           }}
           className="form-horizontal"
           >
@@ -48,11 +54,11 @@ class SearchInputGroup extends React.Component {
             </label>
             <div className="col-sm-9">
               <input
-                value={this.state.inputValue}
+                value={input}
                 type="text"
                 className="form-control"
                 placeholder={isCandidateMode ? 'candidate' : 'committee'}
-                onChange={e => this.setState({ inputValue: e.target.value })}
+                onChange={e => updateInput(isCandidateMode, e.target.value)}
                 />
             </div>
           </div>
@@ -77,11 +83,16 @@ SearchInputGroup.propTypes = {
   isCandidateMode: PropTypes.bool.isRequired,
   switchMode: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
+  candidateSearchInput: PropTypes.string,
+  committeeSearchInput: PropTypes.string,
+  updateInput: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     isCandidateMode: state.global.isCandidateMode,
+    candidateSearchInput: state.candidates.searchInput,
+    committeeSearchInput: state.committees.searchInput,
   }
 }
 
@@ -91,6 +102,10 @@ function mapDispatchToProps(dispatch) {
     search: (isCandidateMode, name) => {
       if (isCandidateMode) return dispatch(nameSearchCandidate(name));
       return dispatch(nameSearchCommittee(name));
+    },
+    updateInput: (isCandidateMode, value) => {
+      if (isCandidateMode) return dispatch(updateCandidateInput(value));
+      return dispatch(updateCommitteeInput(value));
     },
   };
 }

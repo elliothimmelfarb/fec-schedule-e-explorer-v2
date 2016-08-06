@@ -10,7 +10,7 @@ const Header = () => (
     <div className="container-fluid">
       <div className="navbar-header">
         <a className="navbar-brand" href="#">
-          <p>FEC schedule E Filings Explorer</p>
+          <p>FEC Schedule E Filings Explorer</p>
         </a>
       </div>
       <p className="navbar-text navbar-right">

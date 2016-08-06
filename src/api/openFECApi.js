@@ -22,7 +22,7 @@ export default {
     return axios.get(getCommitteesByCandidate(id));
   },
   getCandidatesByCommittee(id) {
-    return axios.get(scheduleEByCommittee(id));
+    return axios.get(getCandidatesByCommittee(id));
   },
   scheduleERelationshipHistory(committeeId, candidateId) {
     return axios.get(scheduleERelationship(committeeId, candidateId));

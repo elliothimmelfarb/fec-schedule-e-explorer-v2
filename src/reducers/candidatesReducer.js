@@ -4,16 +4,21 @@ const initialState = {
   candidatesByName: [],
   candidatesById: {},
   candidateSearchActive: false,
+  searchInput: '',
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case types.UPDATE_CANDIDATE_INPUT: {
+      return Object.assign({}, state, { searchInput: action.value });
+    }
+
     case types.NAME_SEARCH_CANDIDATE_SUCCESS: {
       return Object.assign({}, state, { candidatesByName: action.list, candidateSearchActive: true});
     }
 
     case types.COMMITTEES_BY_CANDIDATE_SUCCESS: {
-      let candidatesById = Object.assign({}, state.candidatesById);
+      const candidatesById = Object.assign({}, state.candidatesById);
       candidatesById[action.id] = {committeeList: action.list};
       return Object.assign({}, state, { candidatesById });
     }
@@ -24,7 +29,7 @@ export default (state = initialState, action) => {
     }
 
     case types.SCHEDULE_ES_BY_COMMITTEE_SUCCESSS: {
-      let candidatesById = Object.assign({}, state.candidatesById);
+      const candidatesById = Object.assign({}, state.candidatesById);
       if (!candidatesById[action.candidateId].hasOwnProperty('schedEByCommitteeList')) {
         candidatesById[action.candidateId].schedEByCommitteeList = {};
       }
