@@ -24,8 +24,6 @@ export default {
     return axios.get(getCandidatesByCommittee(id));
   },
   scheduleERelationshipHistory(committeeId, candidateId) {
-    console.log('committee:', committeeId);
-    console.log('candidate:', candidateId);
     return axios.get(scheduleERelationship(committeeId, candidateId));
   },
 };
