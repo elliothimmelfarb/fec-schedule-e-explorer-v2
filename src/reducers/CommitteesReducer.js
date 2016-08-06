@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case types.CANDIDATES_BY_COMMITTEE_SUCCESS: {
       console.log(action)
       const committeesById = Object.assign({}, state.committeesById);
-      committeesById[action.id] = {committeeList: action.list};
+      committeesById[action.id] = {candidateList: action.list};
       return Object.assign({}, state, { committeesById });
     }
 
@@ -30,11 +30,12 @@ export default (state = initialState, action) => {
     }
 
     case types.SCHEDULE_ES_BY_CANDIDATE_SUCCESSS: {
+      console.log('here');
       const committeesById = Object.assign({}, state.committeesById);
-      if (!committeesById[action.candidateId].hasOwnProperty('schedEByCandidateList')) {
-        committeesById[action.candidateId].schedEByCandidateList = {};
+      if (!committeesById[action.committeeId].hasOwnProperty('schedEByCandidateList')) {
+        committeesById[action.committeeId].schedEByCandidateList = {};
       }
-      committeesById[action.candidateId].schedEByCandidateList[action.committeeId] = action.list;
+      committeesById[action.committeeId].schedEByCandidateList[action.candidateId] = action.list;
       return Object.assign({}, state, { committeesById });
     }
 

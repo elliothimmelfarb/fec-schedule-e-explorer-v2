@@ -48,18 +48,18 @@ class CommitteeNameDisplayCard extends React.Component {
       "S": "Supporting",
     }
     const { id, committeesById } = this.props;
-    return committeesById[id].committeeList.map((committee, index) => {
+    return committeesById[id].candidateList.map((candidate, index) => {
       return (
         <CandidateByCommitteeCard
           key={index}
-          candidateName={name}
-          committeeId={committee.committee_id}
-          candidateId={committee.candidate_id}
-          committeeName={committee.committee_name}
-          count={committee.count}
-          total={committee.total}
-          cycle={committee.cycle}
-          supportOppose={supportOppose[committee.support_oppose_indicator]}
+          candidateName={candidate.candidate_name}
+          committeeId={candidate.committee_id}
+          candidateId={candidate.candidate_id}
+          committeeName={candidate.committee_name}
+          count={candidate.count}
+          total={candidate.total}
+          cycle={candidate.cycle}
+          supportOppose={supportOppose[candidate.support_oppose_indicator]}
           />
       );
     });
@@ -68,8 +68,10 @@ class CommitteeNameDisplayCard extends React.Component {
   render() {
     const { id, committeeName, committeesById } = this.props
     let list;
-    if (this.state.showDetails && committeesById.hasOwnProperty(id)) list = this.createList();
-    const noData = <p>No Data Found<p>;
+    if (this.state.showDetails && committeesById.hasOwnProperty(id)) {
+      list = this.createList();
+      if (list.length < 1) list = (<p>Information Missing</p>)
+    }
     return (
       <div style={style.jumbotron} className="jumbotron">
         <div style={style.row} className="container row">
@@ -81,9 +83,7 @@ class CommitteeNameDisplayCard extends React.Component {
           {this.state.showDetails ? 'Hide Candidates with filings by this Committee' : 'Show Candidates with filings by this Committee'}
         </button>
         <div>
-          {(list.length < 1) ?
-            noData : list
-          }
+          {list}
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { format } from 'currency-formatter'
-import { getScheduleEFilingsByCommittee } from '../../actions/candidateActions';
+import { getScheduleEFilingsByCandidate } from '../../actions/committeeActions';
 import ScheduleEDisplayCard from './ScheduleEDisplayCard';
 
 const style = {
@@ -11,7 +11,7 @@ const style = {
     backgroundColor: 'rgb(179, 180, 193)',
   },
   button: {
-    marginTop: '30px',
+    marginTop: '10px',
     marginBottom: '15px',
     backgroundColor: 'rgb(98, 140, 203)',
   },
@@ -22,7 +22,11 @@ const style = {
     textAlign: 'center',
   },
   row: {
-    margin: '0 auto'
+    margin: '0 auto',
+  },
+  topRow: {
+    marginBottom: '30px',
+    margin: '0 auto',
   },
   suppOpp: {
     marginBottom: '10px',
@@ -30,7 +34,7 @@ const style = {
 }
 
 
-class CommitteeByCandidateCard extends React.Component {
+class CandidateByCommitteeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,19 +43,20 @@ class CommitteeByCandidateCard extends React.Component {
   }
 
   toggleDetails() {
-    const { candidateId, committeeId, getDetails, candidatesById  } = this.props;
-    if (!candidatesById[candidateId].hasOwnProperty('SchedEByCommittee'))
+    const { candidateId, committeeId, getDetails, committeesById  } = this.props;
+    console.log(committeesById[committeeId].hasOwnProperty('SchedEByCandidateList'))
+    if (!committeesById[committeeId].hasOwnProperty('SchedEByCandidateList'))
       getDetails(committeeId, candidateId);
     this.setState({ showDetails: !this.state.showDetails });
   }
 
   createList() {
-    const { candidateId, candidatesById, committeeId } = this.props;
+    const { candidateId, committeesById, committeeId } = this.props;
     const supportOppose = {
       "O": "Opposing",
       "S": "Supporting",
     }
-    return candidatesById[candidateId].schedEByCommitteeList[committeeId].map((schedE, index) => {
+    return committeesById[committeeId].schedEByCandidateList[candidateId].map((schedE, index) => {
       const data = {
         pdf_url: schedE.pdf_url,
         expenditure_date: schedE.expenditure_date,
@@ -71,31 +76,35 @@ class CommitteeByCandidateCard extends React.Component {
   }
 
   render() {
-    const { candidateName, committeeId, candidateId, candidatesById, committeeName, count, total, supportOppose } = this.props
+    const { candidateName, committeeId, candidateId, committeesById, committeeName, count, total, supportOppose } = this.props
     let list = '';
     const formattedTotal = format(total, { code: 'USD' });
     if (this.state.showDetails
-      && candidatesById[candidateId].hasOwnProperty('schedEByCommitteeList')
-      && candidatesById[candidateId].schedEByCommitteeList.hasOwnProperty(committeeId)) {
+      && committeesById[committeeId].hasOwnProperty('schedEByCandidateList')
+      && committeesById[committeeId].schedEByCandidateList.hasOwnProperty(committeeId)) {
         list = this.createList();
       }
     return (
       <div style={style.jumbotron} className="jumbotron">
-        <div style={style.row} className="container row">
-          <div style={style.col} className="col-xs-6">
-            <p>{committeeName}</p>
+        <div style={style.topRow} className="container row">
+          <div style={style.col} className="col-xs-5">
+            <p>{candidateName || 'Information Missing'}</p>
           </div>
           <div style={style.col} className="col-xs-2">
-            <p style={style.suppOpp}>{supportOppose}</p>
-            {candidateName}
+            <p style={style.suppOpp}>{supportOppose || 'Not Declared'}</p>
           </div>
-          <div style={style.col} className="col-xs-2">
+          <div style={style.col} className="col-xs-3">
             Total Filings:
             <p>{count}</p>
           </div>
           <div style={style.col} className="col-xs-2">
             Total Spent:
             <p>{formattedTotal}</p>
+          </div>
+        </div>
+        <div className="row">
+          <div style={style.col} className="col-xs-12">
+            {committeeName}
           </div>
         </div>
         <button style={style.button} onClick={() => this.toggleDetails()} className="btn btn-info form-control">
@@ -109,26 +118,26 @@ class CommitteeByCandidateCard extends React.Component {
   }
 }
 
-CommitteeByCandidateCard.propTypes = {
+CandidateByCommitteeCard.propTypes = {
   committeeId: PropTypes.string,
   candidateId: PropTypes.string,
   committeeName: PropTypes.string,
   count: PropTypes.number,
   total: PropTypes.number,
   supportOppose: PropTypes.string,
-  candidatesById: PropTypes.object,
+  committeesById: PropTypes.object,
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    candidatesById: state.candidates.candidatesById,
+    committeesById: state.committees.committeesById,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getDetails: (committeeId, candidateId) => dispatch(getScheduleEFilingsByCommittee(committeeId, candidateId)),
+    getDetails: (committeeId, candidateId) => dispatch(getScheduleEFilingsByCandidate(committeeId, candidateId)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommitteeByCandidateCard);
+export default connect(mapStateToProps, mapDispatchToProps)(CandidateByCommitteeCard);

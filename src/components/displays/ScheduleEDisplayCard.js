@@ -21,7 +21,7 @@ const style = {
     top: {
       position: 'relative',
       bottom: '20px',
-      left: '18px',
+      margin: '0 auto',
     }
   },
   suppOpp: {
@@ -48,7 +48,7 @@ export default (props) => {
   return (
     <div style={style.jumbotron} className="jumbotron">
       <div style={style.row} style={style.row.top} className="container row">
-        <div  className="col-xs-12">
+        <div style={style.col}  className="col-xs-12">
           Filing Description:
           <p style={style.description}>{expenditure_description}</p>
         </div>

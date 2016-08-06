@@ -49,7 +49,7 @@ export function getCandidatesByCommittee(id) {
       });
 }
 
-export function getScheduleEFilingsByCommittee(committeeId, candidateId) {
+export function getScheduleEFilingsByCandidate(committeeId, candidateId) {
   return dispatch =>
     openFECApi.scheduleERelationshipHistory(committeeId, candidateId)
       .then(response => {
