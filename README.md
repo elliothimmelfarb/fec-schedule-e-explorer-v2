@@ -4,7 +4,7 @@
 
 ##### Uses the [OpenFEC.gov API](https://api.open.fec.gov/developers/)
 
-##### Built with:
+#### Built with:
 - React
 - Redux
 - Webpack
@@ -14,7 +14,7 @@
 
 - Cory House's React-Redux Starter Kit [Boilerplate](https://github.com/coryhouse/pluralsight-redux-starter)
 
-### The backend is in a [separate express server hosted on Heroku](https://github.com/elliothimmelfarb/section-e-explorer-backend)
+#### The backend is in a [separate express server hosted on Heroku](https://github.com/elliothimmelfarb/section-e-explorer-backend)
 
 
 ### Story:
