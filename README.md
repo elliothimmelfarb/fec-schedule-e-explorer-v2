@@ -11,7 +11,6 @@
 - Express
 - Axios
 - Bootstrap
-
 - Cory House's React-Redux Starter Kit [Boilerplate](https://github.com/coryhouse/pluralsight-redux-starter)
 
 #### The backend is in a [separate express server hosted on Heroku](https://github.com/elliothimmelfarb/section-e-explorer-backend)
