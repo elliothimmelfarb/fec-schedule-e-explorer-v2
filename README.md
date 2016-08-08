@@ -7,13 +7,19 @@
 ##### Built with:
 - React
 - Redux
+- Webpack
 - Express
+- Axios
 - Bootstrap
+
+- Cory House's React-Redux Starter Kit [Boilerplate](https://github.com/coryhouse/pluralsight-redux-starter)
 
 ### The backend is in a [separate express server hosted on Heroku](https://github.com/elliothimmelfarb/section-e-explorer-backend)
 
+
 ### Story:
 This is the product of spending 3 days learning React for the first time, then spending 1 day learning Redux. I finished this app 4 days later.
+
 
 ##### Known issues:
 - Some responses from openFEC come back empty. I will add console logging of the routes used for debugging.
