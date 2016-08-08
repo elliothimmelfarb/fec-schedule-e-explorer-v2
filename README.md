@@ -19,4 +19,4 @@ This is the product of spending 3 days learning React for the first time, then s
 - Some responses from openFEC come back empty. I will add console logging of the routes used for debugging.
 - I need to make a better way to display when the responses come back empty
 
-### [Demo](http://fec-schedule-e-explorer.surge.sh/) hosted on [Surge](https://surge.sh/)
+### [Demo](http://fec-schedule-e-explorer.surge.sh/)
