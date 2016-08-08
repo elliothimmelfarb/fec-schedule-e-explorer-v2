@@ -7,11 +7,10 @@
 
 
 #### Built with:
-- React
-- Redux
+- React-Redux
 - Webpack
-- Express
 - Axios
+- Express
 - Bootstrap
 - Cory House's React-Redux Starter Kit [Boilerplate](https://github.com/coryhouse/pluralsight-redux-starter)
 
