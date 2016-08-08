@@ -72,7 +72,7 @@ class CommitteeNameDisplayCard extends React.Component {
     let list;
     if (this.state.showDetails && committeesById.hasOwnProperty(id)) {
       list = this.createList();
-      if (list.length < 1) list = (<p>No Schedule E Filings</p>)
+      if (list.length < 1) list = (<p>No Schedule E Filings</p>);
     }
     return (
       <div style={style.jumbotron} className="jumbotron">

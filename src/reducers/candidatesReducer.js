@@ -30,11 +30,11 @@ export default (state = initialState, action) => {
     }
 
     case types.SCHEDULE_ES_BY_COMMITTEE_SUCCESSS: {
-      // const candidatesById = Object.assign({}, state.candidatesById);
       const candidatesById = deepcopy(state.candidatesById);
       if (!candidatesById[action.candidateId].hasOwnProperty('schedEByCommitteeList')) {
         candidatesById[action.candidateId].schedEByCommitteeList = {};
       }
+      console.log(action);
       candidatesById[action.candidateId].schedEByCommitteeList[action.committeeId] = action.list;
       return Object.assign({}, state, { candidatesById });
     }

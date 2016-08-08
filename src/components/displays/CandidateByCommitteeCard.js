@@ -48,7 +48,6 @@ class CandidateByCommitteeCard extends React.Component {
 
   toggleDetails() {
     const { candidateId, committeeId, getDetails, committeesById  } = this.props;
-    console.log(committeesById[committeeId].hasOwnProperty('SchedEByCandidateList'))
     if (!committeesById[committeeId].hasOwnProperty('SchedEByCandidateList'))
       getDetails(committeeId, candidateId);
     this.setState({ showDetails: !this.state.showDetails });
@@ -87,7 +86,7 @@ class CandidateByCommitteeCard extends React.Component {
       && committeesById[committeeId].hasOwnProperty('schedEByCandidateList')
       && committeesById[committeeId].schedEByCandidateList.hasOwnProperty(candidateId)) {
         list = this.createList();
-        if (list.length === 0) list = (<p>No Schedule E Filings Found</p>)
+        if (!list.length) list = (<p>No Schedule E Filings Found</p>);
       }
     return (
       <div style={style.jumbotron} className="jumbotron">

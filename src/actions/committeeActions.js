@@ -17,11 +17,11 @@ function getCandidatesByCommitteeFailure(error) {
   return { type: types.CANDIDATES_BY_COMMITTEE_FAILURE, error };
 }
 
-function scheduleEsByCommitteeSuccess(list, committeeId, candidateId) {
+function scheduleEsByCandidateSuccess(list, committeeId, candidateId) {
   return { type: types.SCHEDULE_ES_BY_CANDIDATE_SUCCESSS, list, committeeId, candidateId };
 }
 
-function scheduleEsByCommitteeFailure(error) {
+function scheduleEsByCandidateFailure(error) {
   return { type: types.SCHEDULE_ES_BY_CANDIDATE_FAILURE, error };
 }
 
@@ -55,6 +55,6 @@ export function getScheduleEFilingsByCandidate(committeeId, candidateId) {
       .then(response => {
         dispatch(scheduleEsByCandidateSuccess(response.data, committeeId, candidateId));
       }).catch(error => {
-        dispatch(scheduleEsByCommitteeFailure(error));
+        dispatch(scheduleEsByCandidateFailure(error));
       });
 }

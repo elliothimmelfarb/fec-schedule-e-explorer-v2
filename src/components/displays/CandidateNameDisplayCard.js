@@ -61,7 +61,7 @@ class CandidateNameDisplayCard extends React.Component {
           total={committee.total}
           cycle={committee.cycle}
           supportOppose={supportOppose[committee.support_oppose_indicator]}
-          />
+        />
       );
     });
   }
@@ -69,7 +69,10 @@ class CandidateNameDisplayCard extends React.Component {
   render() {
     const { id, name, office, candidatesById } = this.props
     let list;
-    if (this.state.showDetails && candidatesById.hasOwnProperty(id)) list = this.createList();
+    if (this.state.showDetails && candidatesById.hasOwnProperty(id)) {
+      list = this.createList();
+      if (list.length < 1) list = (<p>No Schedule E Filings</p>);
+    }
     return (
       <div style={style.jumbotron} className="jumbotron">
         <div style={style.row} className="container row">
